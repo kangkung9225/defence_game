@@ -1,35 +1,36 @@
-# 🏰 2D 횡스크롤 라인 디펜스 게임 프로젝트
+# 2D 횡스크롤 라인 디펜스 게임 프로젝트
 
-> **앱 개발 원정대** 팀원들이 함께 만드는 2~4주 단기 2D 라인 디펜스 미니 게임 프로젝트입니다.  
-> Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으로 구글 플레이스토어 출시를 목표로 합니다.
-
----
-
-## 📌 1. 프로젝트 개요 및 환경
-- **장르**: 2D 횡스크롤 라인 디펜스
-- **엔진 버전**: **Unity 6.6 (`6000.6.9f1`)** *(팀원 전원 소수점까지 버전 통일 필수)*
-- **렌더 파이프라인**: 2D URP (Universal Render Pipeline)
-- **.NET SDK**: **.NET SDK `8.0.428` (LTS)**
-- **대상 플랫폼**: Android (Google Play Store 출시 목표) & PC Editor 테스트
-- **최소 테스트 기기 사양**: Android 8.0 (Oreo / API Level 26) 이상 탑재 스마트폰 또는 태블릿
-- 📖 **초보자 상세 설치 매뉴얼 (스크린샷 포함)**: [docs/introduction/install.md](./docs/introduction/install.md)
+앱 개발 원정대 팀원들이 함께 만드는 2~4주 단기 2D 라인 디펜스 미니 게임 프로젝트입니다.  
+Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으로 구글 플레이스토어 출시를 목표로 합니다.
 
 ---
 
-## 👥 2. 팀 역할 구분 및 필수 도구
+## 1. 프로젝트 개요 및 환경
+- 장르: 2D 횡스크롤 라인 디펜스
+- 엔진 버전: Unity 6.6 (6000.6.9f1) (팀원 전원 버전 통일)
+- 렌더 파이프라인: 2D URP (Universal Render Pipeline)
+- .NET SDK: .NET SDK 8.0.428 (LTS)
+- 대상 플랫폼: Android (Google Play Store 출시 목표) & PC Editor 테스트
+- 최소 테스트 기기 사양: Android 8.0 (Oreo / API Level 26) 이상 탑재 스마트폰 또는 태블릿
+- 상세 설치 매뉴얼: [docs/introduction/install.md](./docs/introduction/install.md)
+- 벤치마킹 분석 보고서: [docs/benchmarking/benchmarking.md](./docs/benchmarking/benchmarking.md)
+
+---
+
+## 2. 팀 역할 구분 및 준비 도구
 
 본인의 참여 희망 분야에 맞춰 필요한 도구만 준비하시면 됩니다.
 
-| 구분 | 역할 상세 | 필수/권장 준비 도구 |
+| 구분 | 역할 상세 | 준비 도구 |
 |---|---|---|
-| **직접 개발** | Unity 에디터 내 씬/프리팹 배치, C# 스크립트 연결, 핵심 게임 로직 구현 | • **Unity Hub** + **Unity Editor `6000.6.9f1`**<br>• **Git** + **GitHub Desktop**<br>• **VS Code** (내부 `Unity` 확장팩 설치)<br>• **.NET SDK `8.0.428`**<br>• 선호하는 AI 도구 (Claude, GPT, Cline 등) |
-| **부분 개발** | 캐릭터/배경/UI 그래픽 에셋 제작, BGM/SFX 제작, 또는 AI를 활용한 독립 기능 스크립트 초안 작성 | • 그래픽 툴 (Figma, 포토샵, Aseprite 등) 또는 작곡/효과음 툴<br>• **GitHub 계정** 및 **GitHub Desktop** (결과물 직접 업로드 시)<br>• C# 초안 작성 시: **VS Code** + **.NET SDK `8.0.428`** |
-| **비개발 (기획/디자인)** | 세계관 및 캐릭터 설정, 레벨 디자인(웨이브/스탯 밸런스 설계), UI/UX 기획 및 화면 목업 | • 문서/기획 도구 (Google Docs, Notion, 스프레드시트 등)<br>• UI 목업 툴 (Figma, 화면 스케치 등)<br>• **GitHub 계정** (기획 문서/이슈 확인용) |
-| **QA / 테스터** | APK 빌드본 실기기 설치 및 플레이 테스트, 버그 제보, 밸런스/조작감 피드백 | • **Android 8.0 이상 지원 안드로이드 기기** (APK 직접 설치 가능 상태)<br>• GitHub 계정 (이슈 등록 및 버그 리포트 작성용) |
+| 직접 개발 | Unity 에디터 내 씬/프리팹 배치, C# 스크립트 연결, 핵심 게임 로직 구현 | • Unity Hub + Unity Editor 6000.6.9f1<br>• Git + GitHub Desktop<br>• VS Code (내부 Unity 확장팩 설치)<br>• .NET SDK 8.0.428<br>• AI 도구 (Claude, GPT, Cline 등) |
+| 부분 개발 | 캐릭터/배경/UI 그래픽 에셋 제작, BGM/SFX 제작, 또는 AI를 활용한 독립 기능 스크립트 초안 작성 | • 그래픽 툴 (Figma, 포토샵, Aseprite 등) 또는 작곡/효과음 툴<br>• GitHub 계정 및 GitHub Desktop<br>• C# 초안 작성 시: VS Code + .NET SDK 8.0.428 |
+| 비개발 (기획/디자인) | 세계관 및 캐릭터 설정, 레벨 디자인(웨이브/스탯 밸런스 설계), UI/UX 기획 및 화면 목업 | • 문서/기획 도구 (Google Docs, Notion, 스프레드시트 등)<br>• UI 목업 툴 (Figma, 화면 스케치 등)<br>• GitHub 계정 (기획 문서/이슈 확인용) |
+| QA / 테스터 | APK 빌드본 실기기 설치 및 플레이 테스트, 버그 제보, 밸런스/조작감 피드백 | • Android 8.0 이상 지원 안드로이드 기기 (APK 직접 설치 가능 상태)<br>• GitHub 계정 (이슈 등록 및 버그 리포트 작성용) |
 
 ---
 
-## 📋 3. 프로젝트 개발 단계 및 워크플로우
+## 3. 프로젝트 개발 단계 및 워크플로우
 
 단기(2~4주) 목표 달성을 위해 아래 4단계로 순차 진행됩니다.
 
@@ -57,31 +58,31 @@
 
 ---
 
-## 🎨 4. 리소스(에셋) 제작 및 업로드 규격
+## 4. 리소스(에셋) 제작 및 업로드 규격
 
 모든 리소스는 표준화된 확장자와 명명 규칙을 준수하여 프로젝트에 추가합니다.
 
-- **2D 이미지/스프라이트**:
-  - **허용 확장자**: `.png` (배경 투명 처리 필수)
-  - **저장 위치**: `Assets/Sprites/` (하위 `Units/`, `Environments/`, `UI/` 구분)
-  - **Unity 텍스처 규격**: Texture Type: `Sprite (2D and UI)`, PPU(Pixels Per Unit): `100` 기본 통일
-- **오디오 (사운드)**:
-  - **배경음악 (BGM)**: `.mp3` 또는 `.ogg` (루프 재생 최적화)
-  - **효과음 (SFX)**: `.wav` (레이턴시 최소화, 16bit / 44.1kHz 권장)
-  - **저장 위치**: `Assets/Audio/` (하위 `BGM/`, `SFX/` 구분)
-- **데이터 테이블/기획 문서**:
-  - **형식**: `.json` 또는 `.csv` (게임 내 데이터 연동용)
-  - **저장 위치**: `Assets/Data/`
+- 2D 이미지/스프라이트:
+  - 허용 확장자: .png (배경 투명 처리 필수)
+  - 저장 위치: Assets/Sprites/ (하위 Units/, Environments/, UI/ 구분)
+  - Unity 텍스처 규격: Texture Type: Sprite (2D and UI), PPU(Pixels Per Unit): 100 기본 통일
+- 오디오 (사운드):
+  - 배경음악 (BGM): .mp3 또는 .ogg (루프 재생 최적화)
+  - 효과음 (SFX): .wav (레이턴시 최소화, 16bit / 44.1kHz 권장)
+  - 저장 위치: Assets/Audio/ (하위 BGM/, SFX/ 구분)
+- 데이터 테이블/기획 문서:
+  - 형식: .json 또는 .csv (게임 내 데이터 연동용)
+  - 저장 위치: Assets/Data/
 
 ---
 
-## 🌿 5. Git 협업 규칙 & 브랜치 전략
+## 5. Git 협업 규칙 & 브랜치 전략
 
-- **`main` (정식/출시 브랜치)**: 언제나 즉시 출시/플레이 가능한 안정 상태 유지
-- **`dev` (개발/통합 브랜치)**: 팀원들의 기능들이 매일 합쳐지고 테스트되는 기본 브랜치
+- main (정식/출시 브랜치): 언제나 즉시 출시/플레이 가능한 안정 상태 유지
+- dev (개발/통합 브랜치): 팀원들의 기능들이 매일 합쳐지고 테스트되는 기본 브랜치
 
-### 🔄 작업 안전 루틴
-1. 작업 시작 전 항상 **`Pull`** 먼저 받기 (최신 상태 동기화)
-2. `dev`에서 본인의 기능 브랜치 생성 (예: `feat/unit-movement`, `design/cat-sprites`)
+### 작업 안전 루틴
+1. 작업 시작 전 항상 Pull 먼저 받기 (최신 상태 동기화)
+2. dev에서 본인의 기능 브랜치 생성 (예: feat/unit-movement, design/character-sprites)
 3. 작업 완료 후 본인 브랜치로 커밋 및 푸시
-4. GitHub에서 **`dev` 브랜치를 향해 Pull Request (PR)** 발송
+4. GitHub에서 dev 브랜치를 향해 Pull Request (PR) 발송
