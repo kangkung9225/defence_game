@@ -12,7 +12,10 @@ Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으
 - .NET SDK: .NET SDK 8.0.428 (LTS)
 - 대상 플랫폼: Android (Google Play Store 출시 목표) & PC Editor 테스트
 - 최소 테스트 기기 사양: Android 8.0 (Oreo / API Level 26) 이상 탑재 스마트폰 또는 태블릿
-- 상세 설치 매뉴얼: [docs/introduction/install.md](./docs/introduction/install.md)
+
+### 문서 바로가기
+- 초보자 상세 설치 매뉴얼: [docs/introduction/install.md](./docs/introduction/install.md)
+- AI 개발 지침서 (AI 프롬프트용 표준): [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 - 벤치마킹 분석 보고서: [docs/benchmarking/benchmarking.md](./docs/benchmarking/benchmarking.md)
 
 ---
@@ -63,7 +66,7 @@ Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으
 모든 리소스는 표준화된 확장자와 명명 규칙을 준수하여 프로젝트에 추가합니다.
 
 - 2D 이미지/스프라이트:
-  - 허용 확장자: .png (배경 투명 처리 필수)
+  - 허용 확장자: .webp (권장: 투명 알파 지원, 경량화), .png
   - 저장 위치: Assets/Sprites/ (하위 Units/, Environments/, UI/ 구분)
   - Unity 텍스처 규격: Texture Type: Sprite (2D and UI), PPU(Pixels Per Unit): 100 기본 통일
 - 오디오 (사운드):
@@ -76,7 +79,29 @@ Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으
 
 ---
 
-## 5. Git 협업 규칙 & 브랜치 전략
+## 5. GitHub 이슈(Issues) 관리 규칙
+
+팀원 간 작업 중복을 막고 버그를 효율적으로 추적하기 위해 GitHub Issues를 활용합니다.  
+작업을 시작하기 전 이슈를 먼저 등록하거나, 발견한 버그/아이디어를 이슈로 남겨주세요.
+
+### 📌 이슈 제목 규칙 (말머리 사용)
+- [기능] 구현할 기능 요약 (예: [기능] 아군 기본 유닛 소환 쿨타임 UI 구현)
+- [버그] 발견된 오류 현상 (예: [버그] 기지 파괴 시 결과 팝업창이 뜨지 않는 문제)
+- [에셋] 필요한 리소스 요청 (예: [에셋] 적군 타워 기지 도트 이미지 제작)
+- [기획] 밸런스 및 레벨 디자인 (예: [기획] 1스테이지 적 유닛 스폰 주기 테이블 기획)
+
+### 🏷️ 라벨(Label) 활용
+- bug: 버그 수정 건
+- enhancement: 새로운 기능 개발
+- design: 그래픽/사운드 에셋 작업
+- documentation: 기획서 및 매뉴얼 문서 작업
+
+### 🔗 PR(Pull Request)과 이슈 연결
+본인의 기능 개발 브랜치를 dev 브랜치로 PR 날릴 때, 본문 끝에 `Closes #이슈번호`를 적어두면 PR이 승인(Merge)될 때 해당 이슈가 자동으로 닫힙니다. (예: `Closes #12`)
+
+---
+
+## 6. Git 협업 규칙 & 브랜치 전략
 
 - main (정식/출시 브랜치): 언제나 즉시 출시/플레이 가능한 안정 상태 유지
 - dev (개발/통합 브랜치): 팀원들의 기능들이 매일 합쳐지고 테스트되는 기본 브랜치
