@@ -12,6 +12,7 @@
 - **.NET SDK**: **.NET SDK `8.0.428` (LTS)**
 - **대상 플랫폼**: Android (Google Play Store 출시 목표) & PC Editor 테스트
 - **최소 테스트 기기 사양**: Android 8.0 (Oreo / API Level 26) 이상 탑재 스마트폰 또는 태블릿
+- 📖 **초보자 상세 설치 매뉴얼 (스크린샷 포함)**: [docs/introduction/install.md](./docs/introduction/install.md)
 
 ---
 
