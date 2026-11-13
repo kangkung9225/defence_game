@@ -1,4 +1,4 @@
-# 2D 횡스크롤 라인 디펜스 게임 프로젝트
+﻿# 2D 횡스크롤 라인 디펜스 게임 프로젝트
 
 앱 개발 원정대 팀원들이 함께 만드는 2~4주 단기 2D 라인 디펜스 미니 게임 프로젝트입니다.  
 Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으로 구글 플레이스토어 출시를 목표로 합니다.
@@ -69,12 +69,12 @@ Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으
 모든 리소스는 표준화된 확장자와 명명 규칙을 준수하여 프로젝트에 추가합니다.
 
 - 2D 이미지/스프라이트:
-  - 허용 확장자: .webp (권장: 투명 알파 지원, 경량화), .png
+  - 허용 확장자: .webp (투명 알파 지원, 경량화), .png
   - 저장 위치: Assets/Sprites/ (하위 Units/, Environments/, UI/ 구분)
   - Unity 텍스처 규격: Texture Type: Sprite (2D and UI), PPU(Pixels Per Unit): 100 기본 통일
 - 오디오 (사운드):
   - 배경음악 (BGM): .mp3 또는 .ogg (루프 재생 최적화)
-  - 효과음 (SFX): .wav (레이턴시 최소화, 16bit / 44.1kHz 권장)
+  - 효과음 (SFX): .wav (레이턴시 최소화, 16bit / 44.1kHz)
   - 저장 위치: Assets/Audio/ (하위 BGM/, SFX/ 구분)
 - 데이터 테이블/기획 문서:
   - 형식: .json 또는 .csv (게임 내 데이터 연동용)
@@ -114,3 +114,4 @@ Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으
 2. dev에서 본인의 기능 브랜치 생성 (예: feat/unit-movement, design/character-sprites)
 3. 작업 완료 후 본인 브랜치로 커밋 및 푸시
 4. GitHub에서 dev 브랜치를 향해 Pull Request (PR) 발송
+
