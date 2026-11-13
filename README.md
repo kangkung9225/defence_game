@@ -15,6 +15,8 @@ Unity + VS Code + 각자의 AI 도구를 활용하여 협업하며, 최종적으
 
 ### 문서 바로가기
 - 초보자 상세 설치 매뉴얼: [docs/introduction/install.md](./docs/introduction/install.md)
+- 초안 제출 및 테스터 투표 매뉴얼: [docs/workflow/guidelines.md](./docs/workflow/guidelines.md)
+- 4주 타임테이블 개발 로드맵: [docs/workflow/roadmap.md](./docs/workflow/roadmap.md)
 - AI 개발 지침서 (AI 프롬프트용 표준): [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 - 벤치마킹 분석 보고서: [docs/benchmarking/benchmarking.md](./docs/benchmarking/benchmarking.md)
 
