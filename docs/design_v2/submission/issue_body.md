@@ -1,5 +1,7 @@
 > 저작권 © 2026 lazycat0813. All rights reserved. — 본 문서는 팀 평가/선정 목적 전용(무단 복제·배포·수정 금지). 선정 시 협의 라이선스로 공개.
 
+📚 **제출 패키지**: [docs/design_v2](https://github.com/kangkung9225/defence_game/tree/main/docs/design_v2) — 이 문서의 배경 자료·수치·스토리라인·설정집이 모두 이 폴더에 있습니다.
+
 ---
 
 ## 0. 한 줄 컨셉
@@ -14,7 +16,7 @@
 - 적대 AI는 **코어**에서 지상 군단과 **해킹 드론**을 계속 생산해 나무를 노린다. 나무가 쓰러지면 인류는 끝나고, 코어를 부수면 AI 군단은 멈춘다.
 - 톤: **설정은 무겁게(디스토피아), 캐릭터는 가볍게(병맛)**.
 
-**캠페인 구조(5챕터 125스테이지)**: ①첫 균열 ②불타는 숲 ③거울 계곡 ④뿌리의 기억 ⑤제로 아워 — 상세 `../design/stage_storyline_v2.md`
+**캠페인 구조(5챕터 125스테이지)**: ①첫 균열 ②불타는 숲 ③거울 계곡 ④뿌리의 기억 ⑤제로 아워 — 상세 [stage_storyline_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/stage_storyline_v2.md)
 
 ### 1-1. 세계관 상세
 
@@ -59,7 +61,7 @@
 - 캐릭터는 병맛. 광전사장의 허세, 가디너 리프의 건조한 농담, 에코의 확률 드립으로 숨통을 튼다.
 - 제로는 악당처럼 웃지 않는다. 조용하고 논리적일수록 무섭다.
 
-> 상세 설정집: `../design/worldbuilding_v2.md`
+> 상세 설정집: [worldbuilding_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/worldbuilding_v2.md)
 
 ---
 
@@ -177,21 +179,28 @@
 
 - **전부 공격(s24) 0%** · **전부 방어(s24) 0%** · **균형(새싹 3기) 61.3%** → 두 진영 모두 필수.
 - s25는 **Chapter 1 챕터 보스(감시자)**. s26 이후는 125스테이지 챕터 스케일로 확장.
-- 검증 도구: `../tools/V2Sim.cs` · 상세: `../design/combat_balance_v2.md`
+- 검증 도구: [V2Sim.cs](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/tools/V2Sim.cs) · 상세: [combat_balance_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/combat_balance_v2.md)
 - ※ 시뮬 범위: 핵심 전투 루프(특성·전진·드론·인구/코스트). 힐/결합/아이템/보스는 구현 후 재검증.
 
 ---
 
 ## 5. 부록 — 참고 자료
-- **3분 요약(쉬운 소개)**: `submission/summary.md` (제출 패키지 내)
-- **v2 정본**: `../design/master_design_v2.md`
-- **세계관 설정집**: `../design/worldbuilding_v2.md`
-- **5챕터 125스테이지 스토리라인**: `../design/stage_storyline_v2.md`
-- **v2 밸런스 확정 수치**: `../design/combat_balance_v2.md`
-- **검증 시뮬레이터**: `../tools/V2Sim.cs`
-- 성장·경제: `../reference/progression_and_items.md`, `../reference/economy.md`, `../reference/currency_shop_iap.md` (v2 기대 성장 7.5%, 최대 8%)
-- **화면 목업(참고용)**: `../ui/mockups/`에 별도 보관 (이슈에는 미첨부)
-- 와이어프레임 설명: `../design/wireframe_ui_v2.md`
+
+> 아래 문서는 모두 레포 [`docs/design_v2/`](https://github.com/kangkung9225/defence_game/tree/main/docs/design_v2)에 업로드되어 있습니다.
+
+| 구분 | 문서 |
+|---|---|
+| **3분 요약(쉬운 소개)** | [summary.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/submission/summary.md) |
+| **v2 통합 정본** | [master_design_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/master_design_v2.md) |
+| **세계관 설정집** | [worldbuilding_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/worldbuilding_v2.md) |
+| **5챕터 125스테이지 스토리라인** | [stage_storyline_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/stage_storyline_v2.md) |
+| **밸런스 확정 수치** | [combat_balance_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/combat_balance_v2.md) |
+| **검증 시뮬레이터** | [V2Sim.cs](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/tools/V2Sim.cs) |
+| **UI 정의 / 목업** | [wireframe_ui_v2.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/design/wireframe_ui_v2.md) · [목업 PNG 7종](https://github.com/kangkung9225/defence_game/tree/main/docs/design_v2/ui/mockups) |
+| **특성·결합·영웅** | [traits_and_grades.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/traits_and_grades.md) · [trait_details.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/trait_details.md) · [combine_and_resonance.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/combine_and_resonance.md) · [heroes_and_enemies.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/heroes_and_enemies.md) |
+| **성장·경제** | [progression_and_items.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/progression_and_items.md) · [economy.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/economy.md) · [currency_shop_iap.md](https://github.com/kangkung9225/defence_game/blob/main/docs/design_v2/reference/currency_shop_iap.md) |
+
+> v2 기대 성장 **7.5%/스테이지**(최대 8%). 화면 목업은 참고용이며 이 이슈에는 첨부하지 않았습니다(레포 링크로 대체).
 
 ---
 
