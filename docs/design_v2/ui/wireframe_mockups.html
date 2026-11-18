@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>인류의 불씨 — 화면 와이어프레임 목업</title>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#1b2033; --panel2:#242a40; --line:#333b57;
+    --text:#e8ecf5; --muted:#8b93a7;
+    --ember:#ff6b3d; --verdant:#3ddc84; --gold:#ffcc4d; --shard:#4db8ff; --gem:#c06bff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#2a2d3a;font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;}
+  .wrap{padding:24px 0 60px;}
+  .hint{width:1920px;margin:0 auto 16px;color:#cfd4e2;font-size:16px;line-height:1.6;}
+  .screen{
+    position:relative;width:1920px;height:1080px;margin:24px auto;background:var(--bg);color:var(--text);
+    border:1px solid #3a4160;border-radius:14px;overflow:hidden;
+    display:flex;flex-direction:column;padding:36px 48px;
+  }
+  .screen .tag{position:absolute;top:14px;right:20px;font-size:15px;color:var(--muted);letter-spacing:.08em;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{font-size:26px;font-weight:800;letter-spacing:-.02em;}
+  .brand small{display:block;font-size:14px;color:var(--muted);font-weight:500;letter-spacing:.1em;}
+  .cur{display:flex;gap:18px;font-size:20px;}
+  .cur b{font-weight:700;}
+  .pill{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 18px;}
+  .spacer{flex:1;}
+  .muted{color:var(--muted);}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;}
+  .btn{border:none;border-radius:14px;padding:18px 28px;font-size:20px;font-weight:700;color:#0d1020;background:#dfe5f2;cursor:pointer;}
+  .btn.primary{background:linear-gradient(135deg,#ffb15c,#ff6b3d);color:#1a0d05;}
+  .btn.verdant{background:linear-gradient(135deg,#7ff0b3,#3ddc84);color:#04220f;}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);}
+  .btn.sm{padding:12px 18px;font-size:16px;border-radius:10px;}
+  .bar{height:18px;background:#12162a;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
+  .bar>i{display:block;height:100%;border-radius:999px;}
+  .h-ember{background:linear-gradient(90deg,#ff8a5c,#ff4d2e);}
+  .h-verdant{background:linear-gradient(90deg,#7ff0b3,#2fbf6e);}
+  .h-pop{background:linear-gradient(90deg,#ffd978,#ffb020);}
+  .h-cost{background:linear-gradient(90deg,#7fd4ff,#3d8bff);}
+  .label{font-size:15px;color:var(--muted);margin-bottom:8px;letter-spacing:.04em;}
+  .center{display:flex;align-items:center;justify-content:center;}
+  .token{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:12px;font-size:24px;background:var(--panel2);border:1px solid var(--line);}
+  .token.ember{border-color:var(--ember);}
+  .token.verdant{border-color:var(--verdant);}
+  .token.enemy{border-color:#ff5b6e;background:#2a1620;}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px;}
+  .row{display:flex;gap:18px;align-items:center;}
+  .col{display:flex;flex-direction:column;gap:10px;}
+  .grow{flex:1;}
+  .hero{font-size:18px;}
+  .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:700;}
+  .b-legend{background:#5b3b00;color:#ffd873;border:1px solid #b8860b;}
+  .b-epic{background:#3a2450;color:#d3a6ff;border:1px solid #7a4bb0;}
+  .b-normal{background:#26304a;color:#b9c6e6;border:1px solid #45557a;}
+  .b-dud{background:#3a2030;color:#ff9db5;border:1px solid #8a4560;}
+
+  /* Lobby */
+  .lobby-hero{flex:1;display:flex;gap:36px;align-items:center;justify-content:center;margin:26px 0;}
+  .lobby-art{width:1100px;height:430px;border-radius:20px;position:relative;overflow:hidden;
+    background:radial-gradient(600px 300px at 25% 60%, rgba(61,220,132,.30), transparent 70%),
+               radial-gradient(600px 300px at 75% 60%, rgba(255,107,61,.35), transparent 70%),
+               linear-gradient(160deg,#141a2e,#0c0f1c);border:1px solid var(--line);}
+  .pillar{position:absolute;bottom:40px;width:120px;height:250px;border-radius:18px 18px 8px 8px;opacity:.9;}
+  .pillar.e{left:170px;background:linear-gradient(180deg,#ff9a6b,#a5321a);box-shadow:0 0 60px rgba(255,107,61,.5);}
+  .pillar.v{right:170px;background:linear-gradient(180deg,#8ff0b8,#1f7a48);box-shadow:0 0 60px rgba(61,220,132,.5);}
+  .lobby-art .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;font-size:22px;color:#dfe6f5;letter-spacing:.2em;}
+  .lobby-art .popbar{position:absolute;left:50%;top:44px;transform:translateX(-50%);width:520px;}
+  .nav{display:flex;gap:20px;justify-content:center;}
+  .nav .btn{min-width:260px;padding:26px 20px;font-size:24px;}
+
+  /* Stage */
+  .chapter{font-size:22px;margin:8px 0 6px;}
+  .nodes{display:flex;gap:18px;margin-top:26px;}
+  .node{width:150px;height:150px;border-radius:20px;background:var(--panel2);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:30px;font-weight:800;}
+  .node small{font-size:14px;color:var(--muted);font-weight:600;margin-top:6px;}
+  .node.boss{border-color:#ff5b6e;box-shadow:0 0 24px rgba(255,91,110,.3);}
+  .node.sel{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,204,77,.25);}
+  .preview{display:flex;gap:24px;margin-top:36px;}
+  .preview .panel{padding:26px;flex:1;}
+  .stage-map{display:flex;gap:28px;margin-top:18px;align-items:flex-start;}
+  .map-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;width:540px;}
+  .node.sm{width:auto;height:92px;font-size:22px;border-radius:14px;}
+  .node.sm small{font-size:11px;margin-top:4px;}
+
+  /* Gacha */
+  .gacha-stage{flex:1;display:flex;align-items:center;justify-content:center;margin:24px 0;}
+  .cardback{width:300px;height:420px;border-radius:22px;border:2px solid #4a5680;
+    background:linear-gradient(150deg,#232a44,#151a2c);display:flex;align-items:center;justify-content:center;
+    font-size:80px;box-shadow:0 24px 60px rgba(0,0,0,.45);}
+  .results{display:flex;gap:16px;margin-top:15px;}
+  .results .card{width:150px;height:190px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;}
+
+  /* Deck */
+  .deck-body{display:flex;gap:28px;flex:1;margin-top:22px;}
+  .ugrid{flex:1.4;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-content:start;}
+  .ucard{height:170px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+  .detail{flex:1;padding:24px;}
+  .deckslots{display:flex;gap:12px;margin-top:18px;}
+  .slot{width:74px;height:74px;border-radius:14px;border:1px dashed #4a5680;display:flex;align-items:center;justify-content:center;font-size:26px;color:#5a648042;}
+
+  /* Battle */
+  .hud{display:flex;align-items:center;gap:22px;}
+  .hud .side{flex:1;}
+  .field{flex:1;position:relative;margin:18px 0;border-radius:18px;border:1px solid var(--line);
+    background:linear-gradient(180deg,#101528,#0b0f1c);overflow:hidden;}
+  .field .ground{position:absolute;left:0;right:0;top:52%;height:2px;background:#2b3352;}
+  .lane{position:absolute;bottom:196px;left:230px;right:230px;display:flex;align-items:flex-end;justify-content:space-between;}
+  .group{display:flex;gap:14px;align-items:flex-end;}
+  .front{position:absolute;left:50%;top:20%;transform:translateX(-50%);font-size:14px;color:var(--muted);letter-spacing:.3em;}
+  .hero-unit{position:absolute;right:420px;bottom:270px;}
+  .bottom{display:flex;align-items:center;gap:18px;}
+  .costwrap{width:520px;}
+  .slots{display:flex;gap:12px;}
+  .sum{width:88px;height:88px;border-radius:16px;background:var(--panel2);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:26px;position:relative;}
+  .sum small{font-size:12px;color:var(--muted);}
+  .cd{position:absolute;inset:0;border-radius:16px;background:conic-gradient(rgba(0,0,0,.6) 0 60%, transparent 60%);}
+  .sum.disabled{filter:grayscale(.6) brightness(.6);}
+  .items{display:flex;gap:10px;margin-left:auto;}
+
+  /* v2 battle bases */
+  .base{position:absolute;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2;}
+  .base .art{font-size:118px;line-height:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55));}
+  .base .hp{font-size:14px;color:var(--muted);letter-spacing:.06em;}
+  .base.tree{left:120px;}
+  .base.core{right:120px;}
+  .advance{position:absolute;bottom:196px;left:430px;display:flex;gap:12px;font-size:34px;z-index:2;}
+  .drone{position:absolute;top:74px;left:960px;font-size:38px;z-index:2;}
+  .drone .warn{display:block;margin-top:4px;font-size:13px;color:#ff9db5;letter-spacing:.12em;text-align:center;}
+  .field .line-label{position:absolute;font-size:13px;color:var(--muted);letter-spacing:.2em;z-index:2;}
+  .line-label.def{left:255px;bottom:300px;}
+  .line-label.push{left:50%;transform:translateX(-50%);bottom:300px;}
+  .line-label.core{right:255px;bottom:300px;}
+  .cap-pill{font-size:14px;color:var(--muted);margin-top:8px;}
+  .cap-pill b{color:var(--text);}
+
+  /* v2 lobby */
+  .lobby-art .tree{position:absolute;left:170px;bottom:42px;font-size:150px;filter:drop-shadow(0 0 56px rgba(61,220,132,.55));}
+  .lobby-art .core{position:absolute;right:170px;bottom:60px;font-size:132px;filter:drop-shadow(0 0 56px rgba(255,107,61,.55));}
+  .lobby-art .advancing{position:absolute;left:430px;bottom:118px;font-size:36px;letter-spacing:10px;}
+
+  /* Result */
+  .result-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;}
+  .win{font-size:64px;font-weight:900;background:linear-gradient(90deg,#ffd873,#ffe9b0);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.1em;}
+  .rewards{display:flex;gap:26px;font-size:26px;}
+  .result-actions{display:flex;gap:18px;margin-top:14px;}
+
+  /* Shop */
+  .tabs{display:flex;gap:10px;margin:18px 0 26px;}
+  .tabs .tab{padding:12px 24px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:18px;}
+  .tabs .tab.on{background:#2b3352;border-color:#6b7bb0;color:#fff;}
+  .products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .prod{height:300px;border-radius:16px;background:var(--panel2);border:1px solid var(--line);padding:26px;display:flex;flex-direction:column;gap:12px;justify-content:space-between;}
+  .prod .ico{font-size:56px;}
+  .prod .price{font-size:22px;font-weight:800;color:#0d1020;background:var(--gold);border-radius:10px;padding:10px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hint">
+    <b>사용법</b> — 브라우저에서 이 파일을 연 뒤, 각 화면(1920×1080)을 캡처해 제출 이미지로 사용하세요.
+    화면이 크면 브라우저 확대/축소로 조정 후 캡처하면 됩니다. (예: Windows 캡처 도구 / 브라우저 전체화면 캡처)
+  </div>
+
+  <!-- 1. 로비 -->
+  <section class="screen">
+    <div class="tag">SCREEN 01 · LOBBY</div>
+    <div class="topbar">
+      <div class="brand">인류의 불씨<small>AI DEFENSE · 2D</small></div>
+      <div class="cur">
+        <span class="pill">🪙 <b>12,300</b></span>
+        <span class="pill">🔷 <b>1,440</b></span>
+        <span class="pill">💎 <b>320</b></span>
+        <button class="btn sm ghost">⚙ 설정</button>
+        <button class="btn sm ghost">✉ 우편</button>
+      </div>
+    </div>
+
+    <div class="lobby-hero">
+      <div class="lobby-art">
+        <div class="popbar">
+          <div class="label">인류의 불씨 · 인구 58%</div>
+          <div class="bar"><i class="h-pop" style="width:58%"></i></div>
+        </div>
+        <div class="tree">🌳</div>
+        <div class="core">🤖</div>
+        <div class="advancing">🔥 🔥 🔥</div>
+        <div class="cap">마지막 나무를 지켜라</div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="btn primary">출격</button>
+      <button class="btn">뽑기</button>
+      <button class="btn">덱 / 합성</button>
+      <button class="btn">상점</button>
+    </div>
+
+    <div style="display:flex;gap:18px;margin-top:28px;">
+      <div class="panel" style="flex:1;padding:20px;" >
+        <div class="row">
+          <span class="token ember">🔥</span>
+          <div class="grow">
+            <div class="hero"><b>광전사장</b> <span class="muted">Lv.12 · A 공격</span></div>
+            <div class="bar" style="margin-top:8px;"><i class="h-ember" style="width:40%"></i></div>
+          </div>
+          <button class="btn sm ghost">영웅 관리</button>
+        </div>
+      </div>
+      <div class="panel" style="width:420px;padding:20px;display:flex;gap:14px;align-items:center;justify-content:space-around;">
+        <button class="btn sm ghost">시즌 패스</button>
+        <button class="btn sm ghost">일일 보상</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 스테이지 선택 -->
+  <section class="screen">
+    <div class="tag">SCREEN 02 · STAGE SELECT</div>
+    <div class="topbar">
+      <button class="btn sm ghost">← 뒤로</button>
+      <div class="cur">
+        <span class="pill">🪙 <b>12,300</b></span>
+        <span class="pill">🔷 <b>1,440</b></span>
+        <span class="pill">💎 <b>320</b></span>
+      </div>
+    </div>
+
+    <div class="tabs" style="margin:6px 0 16px;">
+      <div class="tab">1 첫 균열</div>
+      <div class="tab on">2 불타는 숲</div>
+      <div class="tab">🔒 3 거울 계곡</div>
+      <div class="tab">🔒 4 뿌리의 기억</div>
+      <div class="tab">🔒 5 제로 아워</div>
+    </div>
+
+    <div class="chapter">챕터 2 · <span class="muted">불타는 숲</span> <span class="muted" style="font-size:16px;">· 25 스테이지</span></div>
+
+    <div class="stage-map">
+      <div class="map-grid">
+        <div class="node sm">26<small>★★★</small></div>
+        <div class="node sm">27<small>★★★</small></div>
+        <div class="node sm">28<small>★★☆</small></div>
+        <div class="node sm">29<small>★☆☆</small></div>
+        <div class="node sm boss">30<small>MINI</small></div>
+        <div class="node sm">31<small>★★★</small></div>
+        <div class="node sm">32<small>★★☆</small></div>
+        <div class="node sm">33<small>★★☆</small></div>
+        <div class="node sm">34<small>★☆☆</small></div>
+        <div class="node sm boss">35<small>MINI</small></div>
+        <div class="node sm">36<small>★★★</small></div>
+        <div class="node sm">37<small>★★☆</small></div>
+        <div class="node sm">38<small>★★☆</small></div>
+        <div class="node sm">39<small>★☆☆</small></div>
+        <div class="node sm boss">40<small>MINI</small></div>
+        <div class="node sm">41<small>★★☆</small></div>
+        <div class="node sm">42<small>★★☆</small></div>
+        <div class="node sm">43<small>★☆☆</small></div>
+        <div class="node sm">44<small>★☆☆</small></div>
+        <div class="node sm boss">45<small>MINI</small></div>
+        <div class="node sm">46<small>★★☆</small></div>
+        <div class="node sm">47<small>★★☆</small></div>
+        <div class="node sm">48<small>★☆☆</small></div>
+        <div class="node sm">49<small>★☆☆</small></div>
+        <div class="node sm boss sel">50<small>BOSS</small></div>
+      </div>
+      <div class="panel" style="flex:1;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+        <div class="label">스테이지 50 · 챕터 보스</div>
+        <div style="font-size:26px;font-weight:800;">오버로드 <span class="muted" style="font-size:16px;">— 사본의 왕좌</span></div>
+        <div class="muted" style="font-size:18px;line-height:1.7;">
+          적 코어 HP 14,400 · 예상 3분<br>
+          화염 지대 · 드론 폭풍 · 새싹 요격 필수<br>
+          보상: 🪙 900 · 🔷 100 · 첫클리어 보너스
+        </div>
+        <button class="btn primary" style="font-size:24px;padding:22px 40px;">입장 (⚡5)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 뽑기 -->
+  <section class="screen">
+    <div class="tag">SCREEN 03 · GACHA</div>
+    <div class="topbar">
+      <button class="btn sm ghost">← 뒤로</button>
+      <div class="cur">
+        <span class="pill">🔷 <b>1,440</b></span>
+        <span class="pill">천장 <b>12 / 40</b></span>
+      </div>
+    </div>
+
+    <div class="gacha-stage">
+      <div class="cardback">🔷</div>
+    </div>
+    <div class="center" style="margin-bottom:18px;">
+      <div class="muted" style="font-size:18px;">당김! 등급 확률 2.3 / 13.6 / 68.2 / 13.6 / 2.3% · 40뽑 ≥영웅 보장</div>
+    </div>
+    <div class="results">
+      <div class="card"><span class="badge b-legend">전설</span><span class="token ember">🔥</span><span>A 공격</span></div>
+      <div class="card"><span class="badge b-epic">영웅</span><span class="token verdant">🌱</span><span>P 생산</span></div>
+      <div class="card"><span class="badge b-normal">일반</span><span class="token">🧩</span><span>D 수비</span></div>
+      <div class="card"><span class="badge b-normal">일반</span><span class="token">🧩</span><span>W 지혜</span></div>
+      <div class="card"><span class="badge b-dud">병맛</span><span class="token">🤡</span><span>C 혼돈</span></div>
+    </div>
+
+    <div class="center" style="gap:22px;margin-top:34px;">
+      <button class="btn">1회 · 100</button>
+      <button class="btn primary">10연 · 900</button>
+    </div>
+  </section>
+
+  <!-- 4. 덱 / 합성 -->
+  <section class="screen">
+    <div class="tag">SCREEN 04 · DECK / COMBINE</div>
+    <div class="topbar">
+      <button class="btn sm ghost">← 뒤로</button>
+      <div class="cur">
+        <span class="pill">필터 · 진영 ▾</span>
+        <span class="pill">성향 ▾</span>
+        <span class="pill">등급 ▾</span>
+        <span class="pill">🪙 <b>12,300</b></span>
+      </div>
+    </div>
+
+    <div class="deck-body">
+      <div class="ugrid">
+        <div class="ucard"><span class="badge b-legend">전설</span><span class="token ember">🔥</span><span>A 공격</span></div>
+        <div class="ucard"><span class="badge b-epic">영웅</span><span class="token verdant">🌱</span><span>P 생산</span></div>
+        <div class="ucard"><span class="badge b-normal">일반</span><span class="token">🧩</span><span>D 수비</span></div>
+        <div class="ucard"><span class="badge b-normal">일반</span><span class="token">🧩</span><span>S 지원</span></div>
+        <div class="ucard"><span class="badge b-epic">영웅</span><span class="token ember">🔥</span><span>W 지혜</span></div>
+        <div class="ucard"><span class="badge b-normal">일반</span><span class="token">🧩</span><span>C 혼돈</span></div>
+        <div class="ucard"><span class="badge b-dud">병맛</span><span class="token">🤡</span><span>—</span></div>
+        <div class="ucard"><span class="badge b-legend">전설</span><span class="token verdant">🌱</span><span>S 지원</span></div>
+      </div>
+
+      <div class="detail panel">
+        <div class="label">선택 유닛 상세</div>
+        <div style="font-size:26px;font-weight:800;margin:6px 0 14px;">불꽃 · 충동형 <span class="badge b-legend">전설</span></div>
+        <div class="col" style="font-size:18px;line-height:1.9;">
+          <div class="row"><span class="muted" style="width:90px;">HP</span><span class="grow"><span class="bar"><i class="h-ember" style="width:78%"></i></span></span><b>320</b></div>
+          <div class="row"><span class="muted" style="width:90px;">ATK</span><span class="grow"><span class="bar"><i class="h-ember" style="width:64%"></i></span></span><b>54</b></div>
+          <div class="row"><span class="muted" style="width:90px;">간격</span><span>0.7s</span></div>
+          <div class="row"><span class="muted" style="width:90px;">특성</span><span>강골 · 열정 · 불굴</span></div>
+          <div class="row"><span class="muted" style="width:90px;">성향</span><span>A 공격 (지배) · C 혼돈 (부)</span></div>
+        </div>
+        <div class="deckslots">
+          <div class="slot">1</div><div class="slot">2</div><div class="slot">3</div>
+          <div class="slot">4</div><div class="slot">5</div><div class="slot">6</div>
+        </div>
+        <div class="row" style="margin-top:18px;">
+          <button class="btn primary grow">결합 (🪙250)</button>
+          <button class="btn ghost grow">업그레이드</button>
+        </div>
+        <div class="muted" style="margin-top:12px;font-size:15px;">결합 최대 티어 2 · 재결합 750 + 🔷50</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 전투 -->
+  <section class="screen">
+    <div class="tag">SCREEN 05 · BATTLE</div>
+    <div class="hud">
+      <button class="btn sm ghost">⏸</button>
+      <button class="btn sm ghost">1× / 2×</button>
+      <div class="side">
+        <div class="label">🌳 아군 나무 HP</div>
+        <div class="bar"><i class="h-verdant" style="width:72%"></i></div>
+        <div class="muted" style="margin-top:6px;font-size:14px;">1,440 / 2,000</div>
+      </div>
+      <div style="width:420px;text-align:center;">
+        <div class="label">인구 (불씨)</div>
+        <div class="bar"><i class="h-pop" style="width:58%"></i></div>
+        <div class="muted" style="margin-top:6px;font-size:14px;">58% · 코스트 +4.2/s</div>
+        <div class="cap-pill">유닛 <b>9 / 12</b> · 새싹 3</div>
+      </div>
+      <div class="side">
+        <div class="label" style="text-align:right;">🤖 적 코어 HP</div>
+        <div class="bar"><i class="h-ember" style="width:78%"></i></div>
+        <div class="muted" style="margin-top:6px;font-size:14px;text-align:right;">18,700 / 24,000</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="ground"></div>
+      <div class="base tree"><div class="art">🌳</div><div class="hp">아군 본진</div></div>
+      <div class="base core"><div class="art">🤖</div><div class="hp">AI 코어</div></div>
+      <div class="drone">✈️<span class="warn">DRONE INBOUND</span></div>
+      <div class="line-label def">🌱 방어선</div>
+      <div class="line-label push">🔥 전진</div>
+      <div class="line-label core">적 본진</div>
+      <div class="lane">
+        <div class="group">
+          <span class="token verdant">🌱</span>
+          <span class="token ember">🔥</span>
+          <span class="token ember">🔥</span>
+          <span class="token verdant">🌱</span>
+          <span class="token ember">🔥</span>
+        </div>
+        <div class="group">
+          <span class="token enemy">🤖</span>
+          <span class="token enemy">🤖</span>
+          <span class="token enemy">🛡</span>
+          <span class="token enemy">🤖</span>
+        </div>
+      </div>
+      <div class="hero-unit">
+        <div class="card" style="text-align:center;">
+          <div class="token ember" style="margin:0 auto 8px;">🔥</div>
+          <div style="font-weight:800;">광전사장</div>
+          <div class="muted" style="font-size:13px;">A 아우라 · 공격 +25%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="costwrap">
+        <div class="label">코스트</div>
+        <div class="bar"><i class="h-cost" style="width:60%"></i></div>
+        <div class="muted" style="margin-top:6px;font-size:15px;">120 / 200 · 유닛 <b style="color:#e8ecf5;">9 / 12</b></div>
+      </div>
+      <div class="slots">
+        <div class="sum"><span>🔥</span><small>50</small></div>
+        <div class="sum"><span>🌱</span><small>70</small><div class="cd"></div></div>
+      </div>
+      <div class="items">
+        <button class="btn sm primary">영웅 스킬</button>
+        <button class="btn sm ghost">나무 수리</button>
+        <button class="btn sm ghost">폭탄</button>
+        <button class="btn sm ghost">정지</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 결과 -->
+  <section class="screen">
+    <div class="tag">SCREEN 06 · RESULT</div>
+    <div class="result-wrap">
+      <div class="win">승 리 !</div>
+      <div class="panel" style="width:900px;padding:36px;text-align:center;">
+        <div class="row" style="justify-content:center;gap:60px;font-size:24px;">
+          <div><div class="muted label">적 코어</div><b>파괴</b></div>
+          <div><div class="muted label">아군 나무 HP</div><b>1,440 / 2,000</b></div>
+          <div><div class="muted label">소요</div><b>1분 26초</b></div>
+        </div>
+        <div class="rewards" style="justify-content:center;margin-top:34px;">
+          <span class="pill">🪙 <b>460</b></span>
+          <span class="pill">🔷 <b>44</b></span>
+          <span class="pill" style="border-color:#b8860b;color:#ffd873;">첫 클리어 +50%</span>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="btn primary">다음 스테이지</button>
+        <button class="btn">재도전</button>
+        <button class="btn ghost">로비</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 상점 -->
+  <section class="screen">
+    <div class="tag">SCREEN 07 · SHOP</div>
+    <div class="topbar">
+      <button class="btn sm ghost">← 뒤로</button>
+      <div class="cur">
+        <span class="pill">🪙 <b>12,300</b></span>
+        <span class="pill">🔷 <b>1,440</b></span>
+        <span class="pill">💎 <b>320</b></span>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab on">성장</div>
+      <div class="tab">뽑기</div>
+      <div class="tab">아이템</div>
+      <div class="tab">스킨</div>
+      <div class="tab">패스</div>
+      <div class="tab">교환</div>
+    </div>
+
+    <div class="products">
+      <div class="prod"><div class="ico">🪙</div><div><b>골드 팩</b><div class="muted">20,000 골드</div></div><div class="price">💎 100</div></div>
+      <div class="prod"><div class="ico">🔷</div><div><b>파편 팩</b><div class="muted">1,000 파편</div></div><div class="price">💎 120</div></div>
+      <div class="prod"><div class="ico">🧰</div><div><b>수리 키트 ×5</b><div class="muted">나무 회복</div></div><div class="price">💎 60</div></div>
+      <div class="prod"><div class="ico">🎫</div><div><b>시즌 패스</b><div class="muted">30일 보상</div></div><div class="price">$4.99</div></div>
+    </div>
+  </section>
+</div>
+<script>
+  // 캡처 모드: ?only=1 ~ 7 → 해당 화면만 1920x1080으로 표시
+  (function(){
+    var m = new URLSearchParams(location.search);
+    var n = m.get('only');
+    if(!n) return;
+    var all = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+    var idx = parseInt(n,10) - 1;
+    all.forEach(function(s,i){ if(i!==idx) s.style.display='none'; });
+    var el = all[idx];
+    if(el){ el.style.margin='0'; el.style.border='0'; el.style.borderRadius='0'; }
+    var h = document.querySelector('.hint'); if(h) h.style.display='none';
+    var w = document.querySelector('.wrap'); if(w) w.style.padding='0';
+    document.body.style.background = '#0f1220';
+  })();
+</script>
+</body>
+</html>
