@@ -1,0 +1,73 @@
+{
+  "stageId": "stage_01",
+  "stageName": "황금빛 국경",
+  "economy": {
+    "initialMaterial": 150,
+    "materialPerSecond": 5.0,
+    "initialEmitters": 10,
+    "emitterRecoverSeconds": 5.0,
+    "emitterCraftMaterialCost": 60,
+    "emitterCraftDurationSeconds": 8.0,
+    "maxTrainingSlots": 2,
+    "allyBaseMaxHp": 1200,
+    "enemyBaseMaxHp": 1200
+  },
+  "units": [
+    {
+      "id": "ally_light_warrior",
+      "faction": "광휘 교단",
+      "name": "빛의 전사",
+      "role": "근접 전열 유지",
+      "materialCost": 20,
+      "emitterCost": 1,
+      "trainingSeconds": 4.0,
+      "maxHp": 80,
+      "attackDamage": 25,
+      "attackIntervalSeconds": 1.0,
+      "attackRange": 1.2,
+      "moveSpeed": 1.85
+    },
+    {
+      "id": "ally_light_archer",
+      "faction": "광휘 교단",
+      "name": "빛의 궁수",
+      "role": "후방 원거리 사격",
+      "materialCost": 35,
+      "emitterCost": 2,
+      "trainingSeconds": 6.0,
+      "maxHp": 55,
+      "attackDamage": 40,
+      "attackIntervalSeconds": 1.6,
+      "attackRange": 5.5,
+      "moveSpeed": 1.45
+    },
+    {
+      "id": "enemy_steam_shield",
+      "faction": "증기 제국",
+      "name": "증기 방패병",
+      "role": "근접 방어선",
+      "materialCost": 0,
+      "emitterCost": 0,
+      "trainingSeconds": 0.0,
+      "maxHp": 115,
+      "attackDamage": 14,
+      "attackIntervalSeconds": 1.25,
+      "attackRange": 1.1,
+      "moveSpeed": 1.10
+    },
+    {
+      "id": "enemy_steam_rifle",
+      "faction": "증기 제국",
+      "name": "증기 소총병",
+      "role": "원거리 화력 지원",
+      "materialCost": 0,
+      "emitterCost": 0,
+      "trainingSeconds": 0.0,
+      "maxHp": 70,
+      "attackDamage": 19,
+      "attackIntervalSeconds": 1.8,
+      "attackRange": 5.0,
+      "moveSpeed": 1.00
+    }
+  ]
+}
